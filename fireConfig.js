@@ -1,11 +1,13 @@
-var firebaseConfig = {
-  apiKey: "AIzaSyB1W_1FthfrEv54C-9-e3TYmMZmWhzxZu8",
-  authDomain: "crudfire-6d869.firebaseapp.com",
-  databaseURL: "https://crudfire-6d869-default-rtdb.firebaseio.com",
-  projectId: "crudfire-6d869",
-  storageBucket: "crudfire-6d869.appspot.com",
-  messagingSenderId: "458160182738",
-  appId: "1:458160182738:web:1f47c26b76744e05aa240b",
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+<script type="module">
+  const firebaseConfig = {
+    apiKey: "AIzaSyD8zoJ7hMfdNCslCRqCKJoFP7e6RSHzS0g",
+    authDomain: "actdb-294c8.firebaseapp.com",
+    projectId: "actdb-294c8",
+    storageBucket: "actdb-294c8.appspot.com",
+    messagingSenderId: "709588756544",
+    appId: "1:709588756544:web:62ce74e06ca0b0309c57a5"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
