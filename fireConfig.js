@@ -1,4 +1,4 @@
-const firebaseConfig = {
+var firebaseConfig = {
   apiKey: "AIzaSyD8zoJ7hMfdNCslCRqCKJoFP7e6RSHzS0g",
   authDomain: "actdb-294c8.firebaseapp.com",
   projectId: "actdb-294c8",
@@ -8,4 +8,4 @@ const firebaseConfig = {
 };
 
  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
