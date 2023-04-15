@@ -310,14 +310,14 @@
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
     ></script>
+    
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-    <!-- Firebase Javascript -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"></script>
-    <!-- Add Firebase products want to use -->
-    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"></script>
-    <script>
-     // Your web app's Firebase configuration
+  // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyAWv4pyvOp7oQDAcDD3HbeL-9rhTRUpljE",
     authDomain: "react-contact-c4b2c.firebaseapp.com",
@@ -330,7 +330,12 @@
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-    </script>
+      
+      import {getDatabase, ref, set, child, update, delete}
+      from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+      
+      
+</script>
     <!-- Form Javascript -->
     <script src="form.js"></script>
   </body>
