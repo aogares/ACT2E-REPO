@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+
+        <div id="title_container">
+
+            <div id="form_container">
+                <input placeholder="Email" type="email" id="email"/>
+                <input placeholder="Password" type="password" id="password"/>
+                <input placeholder="Username" type="name" id="username"/>
+                <input placeholder="Say Something" type="text" id="say_something"/>
+                <input placeholder="Favourite Food" type="text" id="favourite_food"/>
+            </div>
+
+            <div id="button_container">
+                <button id="submit" onclick="save()">SUBMIT</button>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"></script>
+<script src="index.js"></script>
+</html>
