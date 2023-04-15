@@ -1,5 +1,5 @@
-<script type="module">
-  const firebaseConfig = {
+
+  var firebaseConfig = {
     apiKey: "AIzaSyD8zoJ7hMfdNCslCRqCKJoFP7e6RSHzS0g",
     authDomain: "actdb-294c8.firebaseapp.com",
     projectId: "actdb-294c8",
@@ -9,5 +9,5 @@
   };
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
+  firebase.initializeApp(firebaseConfig);
+
