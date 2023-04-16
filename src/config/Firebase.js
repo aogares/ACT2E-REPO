@@ -7,12 +7,13 @@ import  {getAuth} from "firebase/auth"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCBUGhJR7bG6IS8QS5IvCQFij5luWY4qLg",
-  authDomain: "fir-react-crud-daba4.firebaseapp.com",
-  projectId: "fir-react-crud-daba4",
-  storageBucket: "fir-react-crud-daba4.appspot.com",
-  messagingSenderId: "944979781527",
-  appId: "1:944979781527:web:de628ec3969e7d3ab406d2"
+  apiKey: "AIzaSyDpnwboJUwHtx0-L2z1QYvfuxTQbSuWJRk",
+    authDomain: "crud-d7cb9.firebaseapp.com",
+    databaseURL: "https://crud-d7cb9-default-rtdb.firebaseio.com",
+    projectId: "crud-d7cb9",
+    storageBucket: "crud-d7cb9.appspot.com",
+    messagingSenderId: "80177244965",
+    appId: "1:80177244965:web:c8db16de1da90abb5b88cc"
 };
 
 // Initialize Firebase
