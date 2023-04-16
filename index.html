@@ -1,429 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Realtime Fetching From Firebase Databases</title>
-        <!-- for demo only -->
-        <script src="../../../assets/js/script.demo.v0.06.js" defer=""></script>
-    <link rel="shortcut icon" href="../../../images/favicon-v2.png" type="image/x-icon">
-    <meta itemprop="name" content="Realtime Fetching From Firebase Databases">
-    <meta property="og:title" content="Realtime Fetching From Firebase Databases">
-    <meta name="twitter:title" content="Realtime Fetching From Firebase Databases">
-    <link rel="canonical" href="https://www.slidesmaker.me/blog/d/firebase-realtime-database-crud-operations-javascript-8390/">
-    <meta property="og:url" content="https://www.slidesmaker.me/blog/d/firebase-realtime-database-crud-operations-javascript-8390">
-    <meta itemprop="image" content="../../../images/thumbnails/firebase-realtime-database-crud-operations-javascript-8390.jpg">
-    <meta property="og:image" content="../../../images/thumbnails/firebase-realtime-database-crud-operations-javascript-8390.jpg">
-    <meta name="twitter:image" content="../../../images/thumbnails/firebase-realtime-database-crud-operations-javascript-8390.jpg">
-    
+    <title>Crud Operation</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
-    .demo-container {
-        position: fixed;
-        top: 10px;
-        left: -250px;
-        width: 250px;
-        height: 108px;
-        z-index: 9999;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        user-select: none;
-        font-family: 'Roboto', sans-serif;
-        border-radius: 0px 10px 10px 0px;
-        background-color: white;
-        transition: left .2s ease-out;
-        display: none;
-        text-align: left;
-        line-height: 1.2;
-    }
-    .demo-container.visible {
-        left: 0px;
-        transition: left .6s ease-out;
-    }
-    .demo-container svg {
-        position: absolute;
-        right: 13px;
-        top: 10px;
-        transform: rotate(180deg);
-        cursor: pointer;
-        z-index: 9;
-    }
-    .demo-container .channel-branding {
-        font-size: 26px;
-        font-weight: 500;
-        margin-left: 20px;
-        margin-top: 15px;
-        position: relative;
-    }
-    .demo-container .channel-branding img {
-        width: 50px;
-        border-radius: 50%;
-        vertical-align: baseline;
-    }
-    .demo-container .channel-branding span {
-        position: relative;
-        top: -9px;
-    }
-    .demo-container .channel-branding span:last-child {
-        font-size: 10px;
-        position: absolute;
-        top: auto;
-        bottom: 37px;
-        left: 58px;
-    }
-    .demo-container .links {
-        margin-left: 20px;
-    }
-    .demo-container .links li {
-        display: inline-block;
-        font-size: 12px;
-        margin-top: 5px;
-    }
-    .demo-container .links li:last-child {
-        margin-left: 11px;
-    }
-    .demo-container a {
-        text-decoration: none;
-        color: rgb(26, 26, 26);
-    }
-    .demo-container-opener {
-        display: none;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        border-radius: 0px 10px 10px 0px;
-        position: fixed;
-        left: 0px;
-        top: 43px;
-        padding: 4px 8px;
-        padding-top: 7px;
-        background-color: white;
-        cursor: pointer;
-    }
-        </style>
-    
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-GCFCN7G09K"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'G-GCFCN7G09K');
-        </script>
-        <style>
-            .container{
-                max-width: 900px;
-                font-family: sans-serif;
-                margin: auto;
-            }
-            h1{
-                text-align: center;
-                margin-bottom: 30px;
-            }
-            table{
-                width: 100%;
-                border-spacing: 0px;
-            }
-            th{
-                text-align: left;
-            }
-            table td:focus{
-                background-color: #eae9e9;
-            }
-            td:nth-child(3){
-                width: 400px;
-            }
-            td:last-child{
-                text-align: right;
-            }
-            table th,
-            table td{
-                padding: 15px 0px;
-                border-bottom: 1px solid #cacaca;
-                outline: none;
-            }
-        </style>
-    </head>
+        body{
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+table{
+    width: 80%;
+    margin: 40px auto;
+    background: rgb(124,154,167);
+}
+
+table.list{
+    text-align: center;
+    width: 100%;
+}
+
+td{
+    border: 1px solid rgb(204,200,200);
+    text-align: left;
+    padding: 8px 15px;
+}
+
+tr:nth-child(even), table.list thread> tr{
+    background-color: rgb(204,200,200);
+}
+
+input[type="text"],input[type="number"]{
+    width:91%;
+    padding:12px 20px;
+    margin:8px 0;
+    display: inline-block;
+    border: 1px solid rgb(165,161,161);
+    border-radius: 4px;
+}
+
+input[type="submit"],input[type="reset"]{
+    background: #eee;
+    padding:6px 12px;
+    margin:15px 0 10px;
+    display: inline-block;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="submit"]:hover{
+    background: #4b99d8;
+}
+
+input[type="reset"]:hover{
+    background: #4b99d8;
+}
+
+button{
+    background: #eee;
+    padding:6px 12px;
+    margin:15px 0 10px;
+    display: inline-block;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover{
+    background:#4b99d8 ;
+}
+    </style>
+
 </head>
+
 <body>
-    <body><div>
-        <div class="demo-container visible" style="display: block;">
-            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
-                <path d="m10 16.542-1.458-1.48 4.02-4.02H3.479V9h9.083l-4.02-4.021L10 3.5l6.521 6.521Z"></path>
-            </svg>
-            <div class="channel-branding">
-                <img src="../../../images/yt-logo-v1.jpg" alt="hacodes-channel-logo" draggable="false">
-                <span><a href="https://www.youtube.com/channel/UCRoGweZFB3ZOZ9__ExOPULw/" target="_blank">HA
-                        Codes</a></span>
-                <span>Demo Powered By</span>
-            </div>
-            <div class="links">
-                <li><a href="../../../blog/firebase-realtime-database-crud-operations-javascript" target="_blank">Get Source Code</a></li>
-                <li><a href="https://www.youtube.com/watch?v=Ph6r58iuAWw" target="_blank">Like On YouTube</a></li>
-            </div>
-        </div>
-        <div class="demo-container-opener" style="display: block;">
-            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
-                <path d="m10 16.542-1.458-1.48 4.02-4.02H3.479V9h9.083l-4.02-4.021L10 3.5l6.521 6.521Z"></path>
-            </svg>
-        </div>
-    </div>
-        <div class="container">
-            <h1>Realtime fetching From Firebase Databases <a href="send.html" target="_blank">Send</a></h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Message</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>adfasd</td>
-                        <td>sdfasdf</td>
-                        <td>sadfsf</td>
-                        <td>
-                            <button onclick="readyForUpdate('-NSHEyLZb9mMj_l5Z1MG', this)">Update</button>
-                            <button onclick="removeMess('-NSHEyLZb9mMj_l5Z1MG')">Delete</button>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td>asdfasdf</td>
-                        <td>sadfasdfasdf</td>
-                        <td>sadfasdfasdfsadfasd asdfas dfasdfasf</td>
-                        <td>
-                            <button onclick="readyForUpdate('-NSyb4_pABUXdTRKyI6k', this)">Update</button>
-                            <button onclick="removeMess('-NSyb4_pABUXdTRKyI6k')">Delete</button>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td>asdfasdf</td>
-                        <td>sadfasdfasdf</td>
-                        <td>sadfasdfasdfsadfasd asdfas dfasdfasf</td>
-                        <td>
-                            <button onclick="readyForUpdate('-NSyb4sf4ILnGmgIwUl8', this)">Update</button>
-                            <button onclick="removeMess('-NSyb4sf4ILnGmgIwUl8')">Delete</button>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td>asdfasdf</td>
-                        <td>asdf</td>
-                        <td>sdfasdf</td>
-                        <td>
-                            <button onclick="readyForUpdate('-NSyb4vYaBGBZZxM9xL1', this)">Update</button>
-                            <button onclick="removeMess('-NSyb4vYaBGBZZxM9xL1')">Delete</button>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td>sdfasdf</td>
-                        <td>sadf</td>
-                        <td>sdffsadfasdfasdfddfas dfasdfasf</td>
-                        <td>
-                            <button onclick="readyForUpdate('-NSyb51YFAztjhbAtyRR', this)">Update</button>
-                            <button onclick="removeMess('-NSyb51YFAztjhbAtyRR')">Delete</button>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td>fsadfsaasdf</td>
-                        <td>fsadf</td>
-                        <td>asdf</td>
-                        <td>
-                            <button onclick="readyForUpdate('-NSyb55AzfgepXh36UY_', this)">Update</button>
-                            <button onclick="removeMess('-NSyb55AzfgepXh36UY_')">Delete</button>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td>sdfaasdf</td>
-                        <td>sdfsasdfsadfasdf</td>
-                        <td>asdf</td>
-                        <td>
-                            <button onclick="readyForUpdate('-NSyb5TvEBi4FswS04Gf', this)">Update</button>
-                            <button onclick="removeMess('-NSyb5TvEBi4FswS04Gf')">Delete</button>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td>any-data</td>
-                        <td>any-data</td>
-                        <td>any-data</td>
-                        <td>
-                            <button onclick="readyForUpdate('-NSyba8kAJ-R-jbR8Iuq', this)">Update</button>
-                            <button onclick="removeMess('-NSyba8kAJ-R-jbR8Iuq')">Delete</button>
-                        </td>
-                    </tr>
-                
-                    <tr>
-                        <td>any-data</td>
-                        <td>any-data</td>
-                        <td>any-data</td>
-                        <td>
-                            <button onclick="readyForUpdate('-NSybf0UD75dvpfXWdSa', this)">Update</button>
-                            <button onclick="removeMess('-NSybf0UD75dvpfXWdSa')">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    <!-- add firebase CDN -->
-    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"></script>
-    
-    <script>
+    <table>
+        <tr>
+            <td>
+                <form autocomplete="off" onsubmit="onFormSubmit()">
+                    <div>
+                        <label for="productCode">Product Code</label>
+                        <input type="text" name="productCode" id="productCode">
+                    </div>
+                    <div>
+                        <label for="product">Product Name</label>
+                        <input type="text" name="product" id="product">
+                    </div>
+                    <div>
+                        <label for="qty">Qty</label>
+                        <input type="number" name="qty" id="qty">
+                    </div>
+                    <div>
+                        <label for="perPrice">Price</label>
+                        <input type="number" name="perPrice" id="perPrice">
+                    </div>
+
+                    <div class="form_action--button">
+                        <input type="submit" value="Submit">
+                        <input type="reset" value="Reset">
+                    </div>
+                </form>
+
+                <td>
+                    <table class="list" id="storeList">
+                        <thead>
+                            <tr>
+                                <th>Product Code</th>
+                                <th>Product Name</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </td>
+            </td>
+        </tr>
+    </table>
+         <script type="module">
+        // Import the functions you need from the SDKs you need
+        import {initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        import {getDatabase, ref, set, onValue, update} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
         const firebaseConfig = {
-            databaseURL: "https://fir-javascriptcrud-6f0d0-default-rtdb.firebaseio.com"
-        }
-        firebase.initializeApp(firebaseConfig)
-        // here connection is created with database
-        const database = firebase.database()
-    
-        const dataContainer = document.querySelector('tbody')
-    
-        // give complete path to fetch data as given during sending
-        var fetchedData = database.ref('messages/')
-        fetchedData.on('value', (snapshot) => {
-            var data = snapshot.val()
-            // now set data in table
-            var htmlData = ''
-            for(var key in data){
-                var value = data[key]
-                htmlData += `
-                    <tr>
-                        <td>${value.name}</td>
-                        <td>${value.email}</td>
-                        <td>${value.message}</td>
-                        <td>
-                            <button onclick="readyForUpdate('${key}', this)">Update</button>
-                            <button onclick="removeMess('${key}')">Delete</button>
-                        </td>
-                    </tr>
-                `;
-            }
-            // we use unique id's as reference to delete and update data
-            dataContainer.innerHTML = htmlData
-        })
-    
-        // remove message function
-        function removeMess(uniqueId){
-            database.ref('messages/' + uniqueId).remove()
-            // this realtime remove will delete data without any loading
-            // as data is updated, it refetch and rerender in html automatically
-        }
-    
-        // update function 
-        function readyForUpdate(uniqueId, elem){
-            // lets ready for update
-            // it will get all the td of the tr in which btn in clicked
-            var siblingTd = elem.parentElement.parentElement.getElementsByTagName('td')
-            // convert first three td to editable
-            for(var i = 0; i < siblingTd.length-1; i++){
-                siblingTd[i].contentEditable = true
-                siblingTd[i].classList.add('temp-update-class')
-            }
-            // also change onclick function
-            elem.setAttribute('onclick', `updateNow('${uniqueId}')`)
-            elem.innerHTML = 'Send'
-        }
-    
-        // create updateNow function
-        function updateNow(uniqueId){
-            var contentId = document.querySelectorAll('.temp-update-class')
-            // now create obj using same keys as used during sending
-            var obj = {
-                'name': contentId[0].textContent,
-                'email': contentId[1].textContent,
-                'message': contentId[2].textContent
-            }
-            // create reference to the data first where data will update
-            // uniqueId will be the id of each message in db
-            var listRef = database.ref('messages/' + uniqueId)
-            // now provide updated data
-            listRef.update(obj)
-            // after update new data will rerender automatically
-            // same as during delete
-        }
-    
+            // Your configurations here
+            apiKey: "AIzaSyCSQO3WY8KmfVXM6siqZVj4-hqHbB4rirk",
+            authDomain: "fir-crud-dc0ee.firebaseapp.com",
+            databaseURL: "https://fir-crud-dc0ee-default-rtdb.firebaseio.com",
+            projectId: "fir-crud-dc0ee",
+            storageBucket: "fir-crud-dc0ee.appspot.com",
+            messagingSenderId: "578294013427",
+            appId: "1:578294013427:web:54894730874ac48b80c686"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+
+        var selectedRow = null
+
+function onFormSubmit(e) {
+	event.preventDefault();
+        var formData = readFormData();
+        if (selectedRow == null){
+            insertNewRecord(formData);
+		}
+        else{
+            updateRecord(formData);
+		}
+        resetForm();    
+}
+
+//Retrieve the data
+function readFormData() {
+    var formData = {};
+    formData["productCode"] = document.getElementById("productCode").value;
+    formData["product"] = document.getElementById("product").value;
+    formData["qty"] = document.getElementById("qty").value;
+    formData["perPrice"] = document.getElementById("perPrice").value;
+    return formData;
+}
+
+//Insert the data
+function insertNewRecord(data) {
+    var table = document.getElementById("storeList").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow(table.length);
+    cell1 = newRow.insertCell(0);
+		cell1.innerHTML = data.productCode;
+    cell2 = newRow.insertCell(1);
+		cell2.innerHTML = data.product;
+    cell3 = newRow.insertCell(2);
+		cell3.innerHTML = data.qty;
+    cell4 = newRow.insertCell(3);
+		cell4.innerHTML = data.perPrice;
+    cell4 = newRow.insertCell(4);
+        cell4.innerHTML = `<button onClick="onEdit(this)">Edit</button> <button onClick="onDelete(this)">Delete</button>`;
+}
+
+//Edit the data
+function onEdit(td) {
+    selectedRow = td.parentElement.parentElement;
+    document.getElementById("productCode").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("product").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("qty").value = selectedRow.cells[2].innerHTML;
+    document.getElementById("perPrice").value = selectedRow.cells[3].innerHTML;
+}
+function updateRecord(formData) {
+    selectedRow.cells[0].innerHTML = formData.productCode;
+    selectedRow.cells[1].innerHTML = formData.product;
+    selectedRow.cells[2].innerHTML = formData.qty;
+    selectedRow.cells[3].innerHTML = formData.perPrice;
+}
+
+//Delete the data
+function onDelete(td) {
+    if (confirm('Do you want to delete this record?')) {
+        row = td.parentElement.parentElement;
+        document.getElementById('storeList').deleteRow(row.rowIndex);
+        resetForm();
+    }
+}
+
+//Reset the data
+function resetForm() {
+    document.getElementById("productCode").value = '';
+    document.getElementById("product").value = '';
+    document.getElementById("qty").value = '';
+    document.getElementById("perPrice").value = '';
+    selectedRow = null;
+}
     </script>
-    <script>
-        const firebaseConfig = {
-            databaseURL: "https://yt-project-a29f8-default-rtdb.asia-southeast1.firebasedatabase.app"
-        }
-        firebase.initializeApp(firebaseConfig)
-        // here connection is created with database
-        const database = firebase.database()
-    
-        const dataContainer = document.querySelector('tbody')
-    
-        // give complete path to fetch data as given during sending
-        var fetchedData = database.ref('messages/')
-        fetchedData.on('value', (snapshot) => {
-            var data = snapshot.val()
-            // now set data in table
-            var htmlData = ''
-            for(var key in data){
-                var value = data[key]
-                htmlData += `
-                    <tr>
-                        <td>${value.name}</td>
-                        <td>${value.email}</td>
-                        <td>${value.message}</td>
-                        <td>
-                            <button onclick="readyForUpdate('${key}', this)">Update</button>
-                            <button onclick="removeMess('${key}')">Delete</button>
-                        </td>
-                    </tr>
-                `;
-            }
-            // we use unique id's as reference to delete and update data
-            dataContainer.innerHTML = htmlData
-        })
-    
-        // remove message function
-        function removeMess(uniqueId){
-            database.ref('messages/' + uniqueId).remove()
-            // this realtime remove will delete data without any loading
-            // as data is updated, it refetch and rerender in html automatically
-        }
-    
-        // update function 
-        function readyForUpdate(uniqueId, elem){
-            // lets ready for update
-            // it will get all the td of the tr in which btn in clicked
-            var siblingTd = elem.parentElement.parentElement.getElementsByTagName('td')
-            // convert first three td to editable
-            for(var i = 0; i < siblingTd.length-1; i++){
-                siblingTd[i].contentEditable = true
-                siblingTd[i].classList.add('temp-update-class')
-            }
-            // also change onclick function
-            elem.setAttribute('onclick', `updateNow('${uniqueId}')`)
-            elem.innerHTML = 'Send'
-        }
-    
-        // create updateNow function
-        function updateNow(uniqueId){
-            var contentId = document.querySelectorAll('.temp-update-class')
-            // now create obj using same keys as used during sending
-            var obj = {
-                'name': contentId[0].textContent,
-                'email': contentId[1].textContent,
-                'message': contentId[2].textContent
-            }
-            // create reference to the data first where data will update
-            // uniqueId will be the id of each message in db
-            var listRef = database.ref('messages/' + uniqueId)
-            // now provide updated data
-            listRef.update(obj)
-            // after update new data will rerender automatically
-            // same as during delete
-        }
-    
-    </script>
-    
+    <script type="text/javascript" src="./script.js"></script>
 </body>
 </html>
