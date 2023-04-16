@@ -53,12 +53,13 @@ button {
         Gender: <input type="text" name="gender" id="gender" /> <br /><br />
         Address: <input type="text" name="Address" id="address" /> <br /><br />
       </div>
+       <button type="button" id="submitData" name="submitData" class="registerbtn">Register</button>
 
       <div class="buttons">
-        <button id="insert">Insert</button>
-        <button id="read">Read</button>
-        <button id="update">Update</button>
-        <button id="delete">Delete</button>
+        <button id="insert" name="insert">Insert</button>
+        <button id="read" name="read">Read</button>
+        <button id="update" name="update">Update</button>
+        <button id="delete" name="delete">Delete</button>
       </div>
     </div>
 
@@ -87,7 +88,7 @@ button {
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
     
-    
+    submitData.addEventListener('click', (e) => {
     var rollV, nameV, genderV, addressV;
 
 function readFom() {
@@ -97,6 +98,7 @@ function readFom() {
   addressV = document.getElementById("address").value;
   console.log(rollV, nameV, addressV, genderV);
 }
+        )};
 
 document.getElementById("insert").onclick = function () {
   readFom();
