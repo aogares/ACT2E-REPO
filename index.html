@@ -1,100 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Crud Operation</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <style>
-    {
-    background-color: #009688;
-    margin-top: 20px;
-    padding: 10px 20px;
-}
-.popup
-{
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, .4);
-    display: none;
-    place-items: center;
-}
-.popup.active
-{
-    display: grid;
-    animation: show .7s ease-in-out;
-}
-@keyframes show
-{   0%
-    {
-        transform: translateY(-100%);
-    }
-    100%
-    {
-        transform: translateY(0);
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Firebase Realtime DB CRUD Web App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.108.2/css/materialize.min.css">
 
-}
-    </style>
+</head>
 <body>
-    <div class="wrapper">
-        <table id="crud">
-            <caption>Users</caption>
-            <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Phone</td>
-                    <td>Email</td>
-                    <td>Actions</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>abdoelaziz</td>
-                    <td>14548544854</td>
-                    <td>aaa@gmail.com</td>
-                    <td>
-                        <button class="edit">Edit</button>
-                        <button class="delete">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <button class="add-user">Add User</button>
-    </div>
-    <div class="popup">
-        <form action="">
-            <input type="text" placeholder="name">
-            <input type="tel" placeholder="phone">
-            <input type="email" placeholder="email">
-            <input type="submit" value="submit">
-        </form>
+
+    <div class="container">
+        <div class="header center">
+            <img src="https://firebase.google.com/images/brand-guidelines/logo-standard.png" width="400px" alt="">
+            <h4>Real-Time Database CRUD web app</h4>
+        
+            <br>
+
+            <form id="reviewForm">
+                <input type="hidden" id="hiddenId" />
+
+                <div class="input-field">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" />
+                </div>
+
+                <div class="input-field">
+                    <label for="message">Review Content</label>
+                    <textarea class="materialize-textarea" id="messsage"></textarea>
+                </div>
+                <br><br><br>
+
+                <button class="waves-effect waves-light btn" type="submit">Add / Update</button>
+
+            </form>
+
+            <ul id="reviews"></ul>
+        
+        </div>
     </div>
 
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-        import { getDatabase } from "firebase/https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyDYSBmnmZ0oMhffCKPtuvw_S246bmyzjh0",
-          authDomain: "crud-operation-21542.firebaseapp.com",
-          databaseURL: "https://crud-operation-21542-default-rtdb.firebaseio.com",
-          projectId: "crud-operation-21542",
-          storageBucket: "crud-operation-21542.appspot.com",
-          messagingSenderId: "945022057503",
-          appId: "1:945022057503:web:3ead001a1efbc3ff81e92a"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-      </script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="app.js"></script>
 
-    <script src="./main.js"></script>
 </body>
-</html>
+</html
