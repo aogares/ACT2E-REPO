@@ -7,6 +7,37 @@
         <title>Crud Operation</title>
         <link rel="stylesheet" href="style.css">
     </head>
+    <style>
+    {
+    background-color: #009688;
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+.popup
+{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, .4);
+    display: none;
+    place-items: center;
+}
+.popup.active
+{
+    display: grid;
+    animation: show .7s ease-in-out;
+}
+@keyframes show
+{   0%
+    {
+        transform: translateY(-100%);
+    }
+    100%
+    {
+        transform: translateY(0);
+    }
+
+}
+    </style>
 <body>
     <div class="wrapper">
         <table id="crud">
