@@ -13,6 +13,22 @@
 </head>
 <body>
     <form method="post" id="frmContact">
+        <p>
+            Fullname: <input type="text" name="fullname" id="fullname" required />
+        </p>
+        <p>
+            Email: <input type="email" name="email" id="email" required />
+        </p>
+        <p>
+            Subject: <input type="text" name="subject" id="subject" />
+        </p>
+        <p>
+            Message: <textarea name="message" id="message"></textarea>
+        </p>
+        <button type="submit" name="submit">Submit</button>
+    </form>
+    
+    <form method="post" id="frmContact">
       
         <button type="submit" name="submit">Submit</button>
     </form>
@@ -47,6 +63,16 @@
    
   document.getElementById('frmContact').addEventListener('submit', function(e) {
       e.preventDefault();
+      
+      set(ref(db, 'users/' + Math.random().toString(36).slice(2, 7)), {
+          name: document.getElementById('fullname').value,
+          email: document.getElementById('email').value,
+          subject: document.getElementById('subject').value,
+          message: document.getElementById('message').value
+      });
+   
+      alert('Your form is submitted');
+      document.getElementById('frmContact').reset();
       
      // initialise database
         const db = getDatabase();
