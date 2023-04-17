@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--divinectorweb.com-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {text-align: center;}
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>How to Create a Simple Website Layout using HTML CSS</title>
+	<link href="style.css" rel="stylesheet">
+   
+</head>
+<style>
+	 body {text-align: center;}
         #enterDetails {float: left; width: 50%;  background-color: darkslategray; color: floralwhite;}
         #findDetails {float: left; width: 50%; background-color: floralwhite; color: darkslategray;}
         input {width: 120px;}
-        
-         html {
+	
+   html {
 	scroll-behavior: smooth;
 }
 body {
@@ -131,10 +135,10 @@ a:hover {
 		padding: 96px 0;
 	}
 }
-    </style>
-</head>
+
+</style>
 <body>
-    <div class="menu-area">
+	<div class="menu-area">
 		<a class="logo" href="#">company name</a>
 		<ul class="nav">
 			<li>
@@ -144,7 +148,7 @@ a:hover {
 				<a href="#about">About</a>
 			</li>
 			<li include-register.html>
-				<a href="register.html">Register</a>
+				<a href="#portfolio">Register</a>
 			</li>
 			<li>
 				<a href="#services">Service</a>
@@ -166,20 +170,9 @@ a:hover {
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque commodi dolor est nobis veniam! Eius rerum, unde. Accusamus corporis esse eveniet exercitationem fugiat harum pariatur sequi similique tenetur vitae. Aliquam amet est excepturi, exercitationem facere fugit ipsa laborum molestiae nemo officiis placeat quos repellat saepe temporibus voluptatum.</p>
 		</div>
 	</section>
-	<section id="services">
+	<section id="portfolio">
 		<div class="content">
-			<h1>Services Section</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque commodi dolor est nobis veniam! Eius rerum, unde. Accusamus corporis esse eveniet exercitationem fugiat harum pariatur sequi similique tenetur vitae. Aliquam amet est excepturi, exercitationem facere fugit ipsa laborum molestiae nemo officiis placeat quos repellat saepe temporibus voluptatum.</p>
-		</div>
-	</section>
-	<section id="contact">
-		<div class="content">
-			<h1>Contact Section</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque commodi dolor est nobis veniam! Eius rerum, unde. Accusamus corporis esse eveniet exercitationem fugiat harum pariatur sequi similique tenetur vitae. Aliquam amet est excepturi, exercitationem facere fugit ipsa laborum molestiae nemo officiis placeat quos repellat saepe temporibus voluptatum.</p>
-		</div>
-	</section>
-  <section id="register">
-    <div id="enterDetails">
+			<div id="enterDetails">
         <h1>Enter details</h1>
 
         <h4>ID</h4> 
@@ -204,10 +197,23 @@ a:hover {
         <h3 id="findName" type="text"></h3>
         <h3 id="findAge" type="number"></h3> <br><br>
     </div>
+		</div>
 	</section>
-    
-
-    <script type="module">
+	<section id="services">
+		<div class="content">
+			<h1>Services Section</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque commodi dolor est nobis veniam! Eius rerum, unde. Accusamus corporis esse eveniet exercitationem fugiat harum pariatur sequi similique tenetur vitae. Aliquam amet est excepturi, exercitationem facere fugit ipsa laborum molestiae nemo officiis placeat quos repellat saepe temporibus voluptatum.</p>
+		</div>
+	</section>
+	<section id="contact">
+		<div class="content">
+			<h1>Contact Section</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque commodi dolor est nobis veniam! Eius rerum, unde. Accusamus corporis esse eveniet exercitationem fugiat harum pariatur sequi similique tenetur vitae. Aliquam amet est excepturi, exercitationem facere fugit ipsa laborum molestiae nemo officiis placeat quos repellat saepe temporibus voluptatum.</p>
+		</div>
+	</section>
+	
+	
+	 <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
         // TODO: Add SDKs for Firebase products that you want to use
