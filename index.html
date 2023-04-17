@@ -198,6 +198,7 @@ a:hover {
         <button id="find">FIND</button>
         <h3 id="findName" type="text"></h3>
         <h3 id="findAge" type="number"></h3> <br><br>
+	<button id="edit">EDIT</button>
 	<button id="update">UPDATE</button>
         <button id="remove">REMOVE</button> <br><br>
     </div>
@@ -242,7 +243,7 @@ a:hover {
          const app = initializeApp(firebaseConfig);
    
 
-        import {getDatabase, ref, get, set, child, update, remove}
+        import {getDatabase, ref, get, set, child, edit, update, remove}
         from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
         
 
@@ -257,6 +258,7 @@ a:hover {
       
 
         var insertBtn = document.querySelector("#insert");
+	var editBtn = document.querySelector("#edit");
         var updateBtn = document.querySelector("#update");
         var removeBtn = document.querySelector("#remove");
         var findBtn = document.querySelector("#find");
@@ -292,10 +294,19 @@ a:hover {
             })
             
         }
+	
+	function EditData() {
+    		edit(ref(db, "People/"+ eneterID.value),{
+			Name: enterName.value,
+			ID: enterID.value,
+			Age: enterAge.value
+		})
+}
 
         function UpdateData(){
             update(ref(db, "People/"+ enterID.value),{
                 Name: enterName.value,
+		ID: enterID.value,
                 Age: enterAge.value
             })
             .then(()=>{
