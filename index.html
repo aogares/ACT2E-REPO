@@ -320,6 +320,46 @@ a:hover {
         updateBtn.addEventListener('click', UpdateData);
         removeBtn.addEventListener('click', RemoveData);
         findBtn.addEventListener('click', FindData);
+		 
+		 submit.addEventListener('click',(e) => {
+    var enterID = document.getElementById('enterID').value;  
+    var enterName = document.getElementById('enterName').value;  
+    var enterAge = document.getElementById('enterAge').value;  
+
+    const userId = push(child(ref(database), 'People')).key;
+   
+    set(ref(database, 'People/' + userId), {
+    enterID: enterID,
+    enterName: enterName,
+    enterAge : enterAge
+   });
+   alert('saved');
+  });
+
+  // read data
+  getData.addEventListener('click',(e) => {
+
+    $('#dataTbl td').remove();
+    var rowNum = 0; 
+    const dbRef = ref(database, 'People/');
+
+    onValue(dbRef, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+      const childKey = childSnapshot.key;
+      const childData = childSnapshot.val();
+      // ...
+      rowNum += 1; 
+      var row = "<tr><td>" + rowNum + "</td><td>" + childData.enterName + "</td><<td>" + childData.enterName + "</td><td>" + childData.enterAge + "</td><td>" + childData.email + "</td></tr>"
+
+      $(row).appendTo('#dataTbl');
+      
+      });
+    }, {
+       onlyOnce: true
+    });
+
+
+  });
 
       </script>
 </body>
