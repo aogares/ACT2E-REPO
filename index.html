@@ -185,6 +185,8 @@ a:hover {
         <input id="enterAge" type="number"> <br><br>
 
         <button id="insert">INSERT</button>
+	<button id="update">UPDATE</button>
+        <button id="remove">REMOVE</button> <br><br>
     </div>
 
 		</div>
@@ -198,9 +200,6 @@ a:hover {
         <button id="find">FIND</button>
         <h3 id="findName" type="text"></h3>
         <h3 id="findAge" type="number"></h3> <br><br>
-	<button id="edit">EDIT</button>
-	<button id="update">UPDATE</button>
-        <button id="remove">REMOVE</button> <br><br>
     </div>
 		</div>
 	</section>
@@ -258,7 +257,6 @@ a:hover {
       
 
         var insertBtn = document.querySelector("#insert");
-	var editBtn = document.querySelector("#edit");
         var updateBtn = document.querySelector("#update");
         var removeBtn = document.querySelector("#remove");
         var findBtn = document.querySelector("#find");
@@ -295,12 +293,6 @@ a:hover {
             
         }
 	
-	function EditData() {
-    		edit(ref(db, "People/"+ eneterID.value),{
-			Name: enterName.value,
-			ID: enterID.value,
-			Age: enterAge.value
-		})
 }
 
         function UpdateData(){
@@ -328,7 +320,6 @@ a:hover {
         }
 
         insertBtn.addEventListener('click', InsertData);
-	editBtn.addEventListener('click', EditData);
         updateBtn.addEventListener('click', UpdateData);
         removeBtn.addEventListener('click', RemoveData);
         findBtn.addEventListener('click', FindData);
