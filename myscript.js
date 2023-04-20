@@ -1,11 +1,11 @@
-var noV, nameV, phoneV, emailV;
+var noV, nameV, phoneV, addressV;
 
 function readFom() {
   noV = document.getElementById("no").value;
   nameV = document.getElementById("name").value;
   phoneV = document.getElementById("phone").value;
-  emailV = document.getElementById("email").value;
-  console.log(nameV, addressV, phoneV, emailV);
+  addressV = document.getElementById("address").value;
+  console.log(noV, nameV, addressV, phoneV);
 }
 
 document.getElementById("insert").onclick = function () {
@@ -15,15 +15,16 @@ document.getElementById("insert").onclick = function () {
     .database()
     .ref("users/" + noV)
     .set({
+      No: noV,
       name: nameV,
       phone: phoneV,
-      email: emailV,
+      address: addressV,
     });
   alert("Data Inserted");
   document.getElementById("no").value = "";
   document.getElementById("name").value = "";
   document.getElementById("phone").value = "";
-  document.getElementById("email").value = "";
+  document.getElementById("address").value = "";
 };
 
 document.getElementById("read").onclick = function () {
@@ -33,9 +34,10 @@ document.getElementById("read").onclick = function () {
     .database()
     .ref("users/" + noV)
     .on("value", function (snap) {
+      document.getElementById("no").value = snap.val().no;
       document.getElementById("name").value = snap.val().name;
       document.getElementById("phone").value = snap.val().phone;
-      document.getElementById("email").value = snap.val().email;
+      document.getElementById("address").value = snap.val().address;
     });
 };
 
@@ -46,15 +48,16 @@ document.getElementById("update").onclick = function () {
     .database()
     .ref("users/" + noV)
     .update({
+      //   no: noV,
       name: nameV,
       phone: phoneV,
-      email: emailV,
+      address: addressV,
     });
   alert("Data Update");
   document.getElementById("no").value = "";
   document.getElementById("name").value = "";
   document.getElementById("phone").value = "";
-  document.getElementById("email").value = "";
+  document.getElementById("address").value = "";
 };
 document.getElementById("delete").onclick = function () {
   readFom();
@@ -67,5 +70,5 @@ document.getElementById("delete").onclick = function () {
   document.getElementById("no").value = "";
   document.getElementById("name").value = "";
   document.getElementById("phone").value = "";
-  document.getElementById("email").value = "";
+  document.getElementById("address").value = "";
 };
