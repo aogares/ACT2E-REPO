@@ -1,73 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CRUD with Firebase</title>
-    <link rel="stylesheet"/>
-  </head>
-  <style>
-    body {
-    background-color: cornflowerblue;
-  }
-  .container {
-    width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    /* border: 2px solid red; */
-    font-family: arial;
-    font-size: 16px;
-    background-color: white;
-    border-radius: 20px;
-  }
-  h2 {
-    text-align: center;
-  }
-  .container div {
-    text-align: center;
-  }
-  input {
-    width: 250px;
-    padding: 5px;
-  }
-  button {
-    width: 70px;
-    padding: 10px;
-    margin: 10px;
-    font-size: 16px;
-    background-color: cornflowerblue;
-    border: none;
-    color: white;
-    border-radius: 10px;
-  }
-  </style>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {text-align: center;}
+        #enterDetails {float: left; width: 50%;  background-color: darkslategray; color: floralwhite;}
+        #findDetails {float: left; width: 50%; background-color: floralwhite; color: darkslategray;}
+        input {width: 120px;}
+    </style>
+</head>
+<body>
+    <div id="enterDetails">
+        <h1>Enter details</h1>
 
-    <div class="container">
-      <h2>CRUD with Firebase</h2>
-      <hr />
-      <br />
-      
-      <div class="form">
-        Id No: <input type="text" name="RollNo" id="roll" /> <br /><br />
-        Name:&nbsp; <input type="text" name="name" id="name" /> <br /><br />
-        Phone: <input type="text" name="gender" id="phone" /> <br /><br />
-        Address: <input type="text" name="Address" id="address" /> <br /><br />
-      </div>
+        <h4>ID</h4> 
+        <input id="enterID" type="text"> 
 
-      <div class="buttons">
-        <button id="insert">Insert</button>
-        <button id="read">Read</button>
-        <button id="update">Update</button>
-        <button id="delete">Delete</button>
-      </div>
+        <h4>Name</h4> 
+        <input id="enterName" type="text"> 
+
+        <h4>Age</h4> 
+        <input id="enterAge" type="number"> <br><br>
+
+        <button id="insert">INSERT</button>
+        <button id="update">UPDATE</button>
+        <button id="remove">REMOVE</button> <br><br>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+    <div id="findDetails">
+        <h1>Find by ID</h1>
+        <h4>ID</h4>
+        <input id="findID" type="text"> <br><br>
+        <button id="find">FIND</button>
+        <h3 id="findName" type="text"></h3>
+        <h3 id="findAge" type="number"></h3> <br><br>
+    </div>
+    
 
-    <script src="./fireConfig.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
 
-    <script src="./myscript.js"></script>
-  </body>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCSQO3WY8KmfVXM6siqZVj4-hqHbB4rirk",
+            authDomain: "fir-crud-dc0ee.firebaseapp.com",
+            databaseURL: "https://fir-crud-dc0ee-default-rtdb.firebaseio.com",
+            projectId: "fir-crud-dc0ee",
+            storageBucket: "fir-crud-dc0ee.appspot.com",
+            messagingSenderId: "578294013427",
+            appId: "1:578294013427:web:54894730874ac48b80c686"
+            };
+
+         // Initialize Firebase
+         const app = initializeApp(firebaseConfig);
+   
+
+        import {getDatabase, ref, get, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+        
+
+        const db = getDatabase();
+
+        var enterID = document.querySelector("#enterID");
+        var enterName = document.querySelector("#enterName");
+        var enterAge = document.querySelector("#enterAge");
+        var findID = document.querySelector("#findID");
+        var findName = document.querySelector("#findName");
+        var findAge = document.querySelector("#findAge");
+      
+
+        var insertBtn = document.querySelector("#insert");
+        var updateBtn = document.querySelector("#update");
+        var removeBtn = document.querySelector("#remove");
+        var findBtn = document.querySelector("#find");
+
+        function InsertData() {
+            set(ref(db, "People/"+ enterID.value),{
+                Name: enterName.value,
+                ID: enterID.value,
+                Age: enterAge.value
+            })
+            .then(()=>{
+                alert("Data added successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        function FindData() {
+            const dbref = ref(db);
+
+            get(child(dbref, "People/" + findID.value))
+            .then((snapshot)=>{
+                if(snapshot.exists()){
+                    findName.innerHTML = "Name: " + snapshot.val().Name;
+                    findAge.innerHTML = "Age: " + snapshot.val().Age;
+                } else {
+                    alert("No data found");
+                }
+            })
+            .catch((error)=>{
+                alert(error)
+            })
+            
+        }
+
+        function UpdateData(){
+            update(ref(db, "People/"+ enterID.value),{
+                Name: enterName.value,
+                Age: enterAge.value
+            })
+            .then(()=>{
+                alert("Data updated successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        function RemoveData(){
+            remove(ref(db, "People/"+ enterID.value))
+            .then(()=>{
+                alert("Data deleted successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        insertBtn.addEventListener('click', InsertData);
+        updateBtn.addEventListener('click', UpdateData);
+        removeBtn.addEventListener('click', RemoveData);
+        findBtn.addEventListener('click', FindData);
+
+      </script>
+</body>
 </html>
