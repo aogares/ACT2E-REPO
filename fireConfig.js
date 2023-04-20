@@ -1,11 +1,10 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyCSQO3WY8KmfVXM6siqZVj4-hqHbB4rirk",
-    authDomain: "fir-crud-dc0ee.firebaseapp.com",
-    databaseURL: "https://fir-crud-dc0ee-default-rtdb.firebaseio.com",
-    projectId: "fir-crud-dc0ee",
-    storageBucket: "fir-crud-dc0ee.appspot.com",
-    messagingSenderId: "578294013427",
-    appId: "1:578294013427:web:54894730874ac48b80c686"
+    apiKey: "AIzaSyCOjnDkm8y2_ubSMsR9cTc2Bxr6pJiXxs0",
+    authDomain: "fir-crud-82696.firebaseapp.com",
+    projectId: "fir-crud-82696",
+    storageBucket: "fir-crud-82696.appspot.com",
+    messagingSenderId: "810815282023",
+    appId: "1:810815282023:web:86f606647c71264cea2dc2"
   };
 
 // Initialize Firebase
