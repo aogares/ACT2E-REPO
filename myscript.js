@@ -1,8 +1,8 @@
-var nameV, addressV, phoneV, emailV;
+var noV, nameV, phoneV, emailV;
 
 function readFom() {
+  noV = document.getElementById("no").value;
   nameV = document.getElementById("name").value;
-  addressV = document.getElementById("address").value;
   phoneV = document.getElementById("phone").value;
   emailV = document.getElementById("email").value;
   console.log(nameV, addressV, phoneV, emailV);
@@ -13,15 +13,15 @@ document.getElementById("insert").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + nameV)
+    .ref("users/" + noV)
     .set({
-      address: addressV,
+      name: nameV,
       phone: phoneV,
       email: emailV,
     });
   alert("Data Inserted");
+  document.getElementById("no").value = "";
   document.getElementById("name").value = "";
-  document.getElementById("address").value = "";
   document.getElementById("phone").value = "";
   document.getElementById("email").value = "";
 };
@@ -31,9 +31,9 @@ document.getElementById("read").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + nameV)
+    .ref("users/" + noV)
     .on("value", function (snap) {
-      document.getElementById("address").value = snap.val().address;
+      document.getElementById("name").value = snap.val().name;
       document.getElementById("phone").value = snap.val().phone;
       document.getElementById("email").value = snap.val().email;
     });
@@ -44,15 +44,15 @@ document.getElementById("update").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + nameV)
+    .ref("users/" + noV)
     .update({
-      address: addrressV,
+      name: nameV,
       phone: phoneV,
       email: emailV,
     });
   alert("Data Update");
+  document.getElementById("no").value = "";
   document.getElementById("name").value = "";
-  document.getElementById("address").value = "";
   document.getElementById("phone").value = "";
   document.getElementById("email").value = "";
 };
@@ -61,11 +61,11 @@ document.getElementById("delete").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + nameV)
+    .ref("users/" + noV)
     .remove();
   alert("Data Deleted");
+  document.getElementById("no").value = "";
   document.getElementById("name").value = "";
-  document.getElementById("address").value = "";
   document.getElementById("phone").value = "";
   document.getElementById("email").value = "";
 };
