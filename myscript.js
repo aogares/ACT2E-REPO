@@ -13,9 +13,8 @@ document.getElementById("insert").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + rollV)
+    .ref("users/" + nameV)
     .set({
-      name: nameV,
       address: addressV,
       phone: phoneV,
       email: emailV,
@@ -32,9 +31,8 @@ document.getElementById("read").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + rollV)
+    .ref("users/" + nameV)
     .on("value", function (snap) {
-      document.getElementById("name").value = snap.val().name;
       document.getElementById("address").value = snap.val().address;
       document.getElementById("phone").value = snap.val().phone;
       document.getElementById("email").value = snap.val().email;
@@ -46,9 +44,8 @@ document.getElementById("update").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + rollV)
+    .ref("users/" + nameV)
     .update({
-      //   name: nameV,
       address: addrressV,
       phone: phoneV,
       email: emailV,
@@ -64,7 +61,7 @@ document.getElementById("delete").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + rollV)
+    .ref("users/" + nameV)
     .remove();
   alert("Data Deleted");
   document.getElementById("name").value = "";
