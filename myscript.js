@@ -1,11 +1,11 @@
-var noV, nameV, phoneV, addressV;
+var rollV, nameV, genderV, addressV;
 
 function readFom() {
-  noV = document.getElementById("no").value;
+  rollV = document.getElementById("roll").value;
   nameV = document.getElementById("name").value;
-  phoneV = document.getElementById("phone").value;
+  genderV = document.getElementById("gender").value;
   addressV = document.getElementById("address").value;
-  console.log(noV, nameV, addressV, phoneV);
+  console.log(rollV, nameV, addressV, genderV);
 }
 
 document.getElementById("insert").onclick = function () {
@@ -13,17 +13,17 @@ document.getElementById("insert").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + noV)
+    .ref("student/" + rollV)
     .set({
-      No: noV,
+      rollNo: rollV,
       name: nameV,
-      phone: phoneV,
+      gender: genderV,
       address: addressV,
     });
   alert("Data Inserted");
-  document.getElementById("no").value = "";
+  document.getElementById("roll").value = "";
   document.getElementById("name").value = "";
-  document.getElementById("phone").value = "";
+  document.getElementById("gender").value = "";
   document.getElementById("address").value = "";
 };
 
@@ -32,11 +32,11 @@ document.getElementById("read").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + noV)
+    .ref("student/" + rollV)
     .on("value", function (snap) {
-      document.getElementById("no").value = snap.val().no;
+      document.getElementById("roll").value = snap.val().rollNo;
       document.getElementById("name").value = snap.val().name;
-      document.getElementById("phone").value = snap.val().phone;
+      document.getElementById("gender").value = snap.val().gender;
       document.getElementById("address").value = snap.val().address;
     });
 };
@@ -46,17 +46,17 @@ document.getElementById("update").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + noV)
+    .ref("student/" + rollV)
     .update({
-      //   no: noV,
+      //   rollNo: rollV,
       name: nameV,
-      phone: phoneV,
+      gender: genderV,
       address: addressV,
     });
   alert("Data Update");
-  document.getElementById("no").value = "";
+  document.getElementById("roll").value = "";
   document.getElementById("name").value = "";
-  document.getElementById("phone").value = "";
+  document.getElementById("gender").value = "";
   document.getElementById("address").value = "";
 };
 document.getElementById("delete").onclick = function () {
@@ -64,11 +64,11 @@ document.getElementById("delete").onclick = function () {
 
   firebase
     .database()
-    .ref("users/" + noV)
+    .ref("student/" + rollV)
     .remove();
   alert("Data Deleted");
-  document.getElementById("no").value = "";
+  document.getElementById("roll").value = "";
   document.getElementById("name").value = "";
-  document.getElementById("phone").value = "";
+  document.getElementById("gender").value = "";
   document.getElementById("address").value = "";
 };
