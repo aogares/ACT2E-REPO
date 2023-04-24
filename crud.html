@@ -11,17 +11,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 </head>
     <style>
-        frmContact{
+        form .frmContact{
         align:center
         max-width: 450px;
 	    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
         }
-        
-        frmContact .p{
+        form .frmContact .p{
         display:block;
 	    margin-bottom: 10px;        
         }
-        frmContact .p form-control{
+        form .frmContact .p .form-control{
         float: left;
 	width: 100px;
 	color: #F072A9;
@@ -31,6 +30,7 @@
         }
     </style>
 <body>
+<div class="form">
     <form class="col-sm-6" method="post" id="frmContact">
         <p>
             Fullname: <input class="form-control form-control-sm" type="text" name="fullname" id="fullname" required />
@@ -46,6 +46,7 @@
         </p>
         <button class="form-control form-control-sm btn-success" type="submit" name="submit">Submit</button>
     </form>
+	</div>
 </body>
 </html>
 
