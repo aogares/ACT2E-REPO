@@ -73,11 +73,11 @@
     <div class="container d-flex justify-content-center">
         <div class="row col-sm-10">
             <table class="table table-responsive">
-                <th>Key</th>
+                <th>ID</th>
                 <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
                 <th>Email</th>
-                <th>Message</th>
-                <th>Subject</th>
                 <th>Delete</th>
                 <th>Update</th>             
             <tbody id="mytable">
@@ -131,9 +131,9 @@
         if (snapshot.exists()) {
             $("#t1").val(snapshot.val().studno);
             $("#t2").val(snapshot.val().name);
-            $("#t3").val(snapshot.val().email);
-            $("#t4").val(snapshot.val().message);
-            $("#t5").val(snapshot.val().subject);
+            $("#t3").val(snapshot.val().address);
+            $("#t4").val(snapshot.val().phone);
+            $("#t5").val(snapshot.val().email);
             //console.log(snapshot.val());
         } else {
             alert("No data available");
@@ -164,9 +164,9 @@
                 content +='<tr>';
                 content += '<td>' + val.studno + '</td>';
                 content += '<td>' + val.name + '</td>';
+                content += '<td>' + val.address + '</td>';
+                content += '<td>' + val.phone + '</td>';
                 content += '<td>' + val.email + '</td>';
-                content += '<td>' + val.message + '</td>';
-                content += '<td>' + val.subject + '</td>';
                 content += '<td><button id="'+ val.studno +'" class="btn btn-danger" value="delete">Delete</button></td>';
                 content += '<td><button id="'+ val.studno +'" class="btn btn-success" value="update">Update</button></td>';
                 content += '</tr>';
@@ -186,7 +186,7 @@
                     if (ops=="update"){
                         update(ref(db, 'users/' + studno),{
                             email: 'mine@gmail.com',
-                            message: 'From update', 
+                            phone: 'From update', 
                         });
                         //alert('updated');  
                     }
