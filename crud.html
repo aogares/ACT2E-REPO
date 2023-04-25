@@ -19,28 +19,82 @@
         align: center;
 	justify-content: center
     }
+	.menu-area {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	background-color: rgba(224, 228, 231, 0.2);
+	width: 100%;
+	height: 70px;
+	z-index: 1;
+}
+.nav {
+	display: flex;
+	justify-content: right;
+	list-style: none;
+	margin-right: 15%;
+}
+.logo {
+	flex: 1 1 auto;
+	margin-left: 10%;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+	font-size: 25px;
+}
+a {
+	margin: 15px;
+	color: #000;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+a:hover {
+	color: #000;
+}
 
 </style>
 <body>
     
-   
+   <div class="menu-area">
+		<a class="logo" href="#"><img src="2.png"  style="width:48px;height:48px;float:left"> Paradise Resort</a>
+		<ul class="nav">
+			<li>
+				<a href="#home">Home</a>
+			</li>
+			<li>
+				<a href="#about">About</a>
+			</li>
+			<li>
+				<a href="crud.html">Register</a>
+			</li>
+			<li>
+				<a href="app.html">Crud</a>
+			</li>
+			<li>
+				<a href="#contact">Contact</a>
+			</li>
+		</ul>
+	</div>
     
 
-<form class="col-sm-6" method="post" id="frmContact">
-        <p>
-            Fullname: <input class="form-control form-control-sm" type="text" name="fullname" id="fullname" required />
-        </p>
-        <p>
-            Email: <input class="form-control form-control-sm" type="email" name="email" id="email" required />
-        </p>
-        <p>
-            Subject: <input class="form-control form-control-sm" type="text" name="subject" id="subject" />
-        </p>
-        <p>
-            Message: <textarea class="form-control form-control-sm" name="message" id="message"></textarea>
-        </p>
-        <button class="form-control form-control-sm btn-success" type="submit" name="submit">Submit</button>
-    </form>
+	<form class="col-sm-6" method="post" id="frmContact">
+		<p>
+		    Fullname: <input class="form-control form-control-sm" type="text" name="fullname" id="fullname" required />
+		</p>
+		<p>
+		    Email: <input class="form-control form-control-sm" type="email" name="email" id="email" required />
+		</p>
+		<p>
+		    Subject: <input class="form-control form-control-sm" type="text" name="subject" id="subject" />
+		</p>
+		<p>
+		    Message: <textarea class="form-control form-control-sm" name="message" id="message"></textarea>
+		</p>
+		<button class="form-control form-control-sm btn-success" type="submit" name="submit">Submit</button>
+	   </form>
 	
 </body>
 </html>
