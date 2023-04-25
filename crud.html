@@ -12,13 +12,38 @@
 </head>
 <style>
     body {
-        font-family: sans-serif;
-        margin:  0 50px;
-	display: flex;
-        text-align: center;
-        align: center;
-	justify-content: center
-    }
+    background-color: cornflowerblue;
+  }
+  .container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    /* border: 2px solid red; */
+    font-family: arial;
+    font-size: 16px;
+    background-color: white;
+    border-radius: 20px;
+  }
+  h2 {
+    text-align: center;
+  }
+  .container div {
+    text-align: center;
+  }
+  input {
+    width: 250px;
+    padding: 5px;
+  }
+  button {
+    width: 70px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    background-color: cornflowerblue;
+    border: none;
+    color: white;
+    border-radius: 10px;
+  }
 	.menu-area {
 	position: fixed;
 	display: fixed;
@@ -57,46 +82,22 @@ a:hover {
 
 </style>
 <body>
-    
-   <div class="menu-area">
-		<a class="logo" href="#"><img src="2.png"  style="width:48px;height:48px;float:left"> Paradise Resort</a>
-		<ul class="nav">
-			<li>
-				<a href="#home">Home</a>
-			</li>
-			<li>
-				<a href="#about">About</a>
-			</li>
-			<li>
-				<a href="crud.html">Register</a>
-			</li>
-			<li>
-				<a href="app.html">Crud</a>
-			</li>
-			<li>
-				<a href="#contact">Contact</a>
-			</li>
-		</ul>
-	</div>
-	<br></br><br></br><br></br>
-    
+    <div class="container">
+      <h2>CRUD with Firebase</h2>
+      <hr />
+      <br />
+      
+      <div class="form">
+        Fullname: <input type="text" name="fullname" id="full" /> <br /><br />
+        Email:&nbsp; <input type="email" name="email" id="email" /> <br /><br />
+        Subject: <input type="text" name="subject" id="subject" /> <br /><br />
+        Message: <input name="message" id="message" /> <br /><br />
+      </div>
 
-	<form class="col-sm-6" method="post" id="frmContact">
-		<p>
-		    Fullname: <input class="form-control form-control-sm" type="text" name="fullname" id="fullname" required />
-		</p>
-		<p>
-		    Email: <input class="form-control form-control-sm" type="email" name="email" id="email" required />
-		</p>
-		<p>
-		    Subject: <input class="form-control form-control-sm" type="text" name="subject" id="subject" />
-		</p>
-		<p>
-		    Message: <textarea class="form-control form-control-sm" name="message" id="message"></textarea>
-		</p>
-		<button class="form-control form-control-sm btn-success" type="submit" name="submit">Submit</button>
-	   </form>
-	
+      <div class="buttons">
+        <button id="insert">Submit</button>
+      </div>
+    </div>
 </body>
 </html>
 
