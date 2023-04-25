@@ -70,13 +70,13 @@
             Fullname: <input class="form-control" type="text" name="fullname" id="fullname" required />
         </p>
         <p>
-            Email: <input class="form-control" type="email" name="email" id="email" required />
+            Address: <input class="form-control" type="address" name="address" id="address" required />
         </p>
         <p>
-            Subject: <input class="form-control" type="text" name="subject" id="subject" />
+            Phone: <input class="form-control" type="text" name="phone" id="phone" />
         </p>
         <p>
-            Message: <textarea class="form-control" name="message" id="message"></textarea>
+            Email: <input class="form-control" name="email" id="email" />
         </p>
         <button class="form-control btn-success" type="submit" name="submit">Submit</button>
     </form>
@@ -110,9 +110,9 @@
       set(ref(db, 'users/' + Studid ), {
           studno: Studid,  
           name: document.getElementById('fullname').value,
-          email: document.getElementById('email').value,
-          subject: document.getElementById('subject').value,
-          message: document.getElementById('message').value
+          address: document.getElementById('address').value,
+          phone: document.getElementById('phone').value,
+          email: document.getElementById('email').value
       });
    
       alert('Your form is submitted');
