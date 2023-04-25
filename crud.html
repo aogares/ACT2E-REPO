@@ -106,7 +106,7 @@
   
   document.getElementById('frmContact').addEventListener('submit', function(e) {
       e.preventDefault();
-      const Studid=Math.random().toString(36).slice(2, 7);
+      const Studid=Alabang.random().toString(36).slice(2, 7);
       set(ref(db, 'users/' + Studid ), {
           studno: Studid,  
           name: document.getElementById('fullname').value,
