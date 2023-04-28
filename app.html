@@ -69,21 +69,33 @@
 	<br>
 	
 	</br>
- <div class="container1">
-      <h1>Table</h1>
-      <table>
-          <thead>
-              <tr>
-                  <th>Name</th>
-                  <th>Address</th>
-                  <th>Phone</th>
-                  <th>Email</th>
-              </tr>
-          </thead>
-          <tbody>
-          </tbody>
-      </table>
-  </div>
+
+   <div class="container d-flex justify-content-center">
+        <div class="row col-sm-10">
+            <table class="table table-dark table-responsive">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Delete</th>
+                <th>Update</th>             
+            <tbody id="mytable">
+                
+            </tbody>    
+            </table>
+        </div>
+    </div>
+    <div>
+        <input id="t1" type="text"></input>
+        <input id="t2" type="text"></input>
+        <input id="t3" type="text"></input>
+        <input id="t4" type="text"></input>
+        <input id="t5" type="text"></input>
+    </div>
+    
+    <input id="t6" type="text"></input> <button class="btn btn-warning" id="mybtn">Search</button>
+    <button class="btn btn-success">Click Me</button>
 </body>
 </html>
 
@@ -103,81 +115,94 @@
     appId: "1:578294013427:web:54894730874ac48b80c686"
   };
 
-  // Initialize Firebase
+   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
    
   // Get a reference to the database service
   const db = getDatabase(app);
 
-const dataContainer = document.querySelector('tbody')
+    $( "#mybtn" ).click(function() {
+        
+        const taskRef = ref(db, "users/"+ $("#t6").val());
 
-  // give complete path to fetch data as given during sending
-  var fetchedData = database.ref('messages/')
-  fetchedData.on('value', (snapshot) => {
-      var data = snapshot.val()
-      // now set data in table
-      var htmlData = ''
-      for(var key in data){
-          var value = data[key]
-          htmlData += `
-              <tr>
-                  <td>${value.name}</td>
-                  <td>${value.address}</td>
-                  <td>${value.phone}</td>
-		   <td>${value.email}</td>
-                  <td>
-                      <button onclick="readyForUpdate('${key}', this)">Update</button>
-                      <button onclick="removeMess('${key}')">Delete</button>
-                  </td>
-              </tr>
-          `;
-      }
-      // we use unique id's as reference to delete and update data
-      dataContainer.innerHTML = htmlData
-  })
+        get(taskRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            $("#t1").val(snapshot.val().studno);
+            $("#t2").val(snapshot.val().name);
+            $("#t3").val(snapshot.val().address);
+            $("#t4").val(snapshot.val().email);
+            $("#t5").val(snapshot.val().phone);
+            //console.log(snapshot.val());
+        } else {
+            alert("No data available");
+        }
+        }).catch((error) => {
+            alert(error);
+        });
 
-  // remove message function
-  function removeMess(uniqueId){
-      database.ref('messages/' + uniqueId).remove()
-      // this realtime remove will delete data without any loading
-      // as data is updated, it refetch and rerender in html automatically
-      alert("Data Removed");
-  }
+    });
 
-  // update function 
-  function readyForUpdate(uniqueId, elem){
-      // lets ready for update
-      // it will get all the td of the tr in which btn in clicked
-      var siblingTd = elem.parentElement.parentElement.getElementsByTagName('td')
-      // convert first three td to editable
-      for(var i = 0; i < siblingTd.length-1; i++){
-          siblingTd[i].contentEditable = true
-          siblingTd[i].classList.add('temp-update-class')
-      }
-      // also change onclick function
-      elem.setAttribute('onclick', `updateNow('${uniqueId}')`)
-      elem.innerHTML = 'Send'
-  }
+   
+    $( "#submit" ).click(function() {    
+     // initialise database
+        const db = getDatabase();
 
-  // create updateNow function
-  function updateNow(uniqueId){
-      var contentId = document.querySelectorAll('.temp-update-class')
-      // now create obj using same keys as used during sending
-      var obj = {
-          'name': contentId[0].textContent,
-          'address': contentId[1].textContent,
-          'phone': contentId[2].textContent,
-	  'email': contentId[2].textContent
-      }
-      // create reference to the data first where data will update
-      // uniqueId will be the id of each message in db
-      var listRef = database.ref('messages/' + uniqueId)
-      // now provide updated data
-      listRef.update(obj)
-      // after update new data will rerender automatically
-      // same as during delete
-      alert("Data Updated");
-  }
+        const tasksRef = ref(db, "users");
 
+        get(tasksRef)
+        .then((snapshot) => {
+            //const data = snapshot.val();
+            //console.log(data);
+
+            
+            var content = '';
+            //var x=1;
+            snapshot.forEach(function(data){
+                var val = data.val();
+                content +='<tr>';
+                content += '<td>' + val.studno + '</td>';
+                content += '<td>' + val.name + '</td>';
+                content += '<td>' + val.address + '</td>';
+                content += '<td>' + val.phone + '</td>';
+                content += '<td>' + val.email + '</td>';
+                content += '<td><button id="'+ val.studno +'" class="btn btn-danger" value="delete">Delete</button></td>';
+                content += '<td><button id="'+ val.studno +'" class="btn btn-success" value="update">Update</button></td>';
+                content += '</tr>';
+            });
+
+            // Function to change the content of t2
+                function modifyText(event) {
+                    var studno=event.target.id;
+                    var ops=event.target.value; 
+                    //var  event.target.value);
+
+                    if (ops=="delete"){
+                        remove(ref(db, 'users/' + studno)); 
+                        //alert("Record has been removed."); 
+                    }
+
+                    if (ops=="update"){
+                        update(ref(db, 'users/' + studno),{
+                            email: 'mine@gmail.com',
+                            phone: 'From update', 
+                        });
+                        //alert('updated');  
+                    }
+                }
+
+                // Add event listener to table
+                const el = document.getElementById("mytable");
+                el.addEventListener("click", modifyText, false);
+                
+            
+            //$('#mytable').append(content);
+            $("#mytable").html(content);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+
+        
+    });
 
   </script>
