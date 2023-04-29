@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600&display=swap');
 
-::root {
+:root {
     --color: crimson;
 }
 * {
@@ -33,7 +33,7 @@ html::-webkit-scrollbar-thumb {
     background: var(--color);
 }
 body {
-    background: #e9e2e2;
+    background: #fff;
     overflow-x: hidden;
     padding-left: 35rem;
 }
@@ -44,7 +44,7 @@ section {
 .btn {
     padding: .7rem 3rem;
     background: #333;
-    color: #fff;
+    color: #e9e2e2;
     cursor: pointer;
     margin-top: 1rem;
     font-size: 2rem;
